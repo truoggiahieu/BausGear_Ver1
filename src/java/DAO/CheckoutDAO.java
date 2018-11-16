@@ -75,11 +75,12 @@ public class CheckoutDAO {
 
         try {
            Connection conn = ConnectionDB.getConn();
-            String sql = "insert into OrderDetails values (?,?,?)";
+            String sql = "insert into OrderDetails values (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, orderDetail.getOrderid());
             ps.setInt(2, orderDetail.getQuantity());
             ps.setInt(3, orderDetail.getProductid());
+            ps.setInt(4, orderDetail.getPrice());
             int rs = ps.executeUpdate();
             if (rs > 0) {
                 return true;

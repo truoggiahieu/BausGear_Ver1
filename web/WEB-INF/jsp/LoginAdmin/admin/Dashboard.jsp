@@ -1,5 +1,7 @@
 <!doctype html>
 <html class="fixed">
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <head>
 
         <!-- Basic -->
@@ -290,7 +292,7 @@
                                                     <div class="summary">
                                                         <h4 class="title">Total </h4>
                                                         <div class="info">
-                                                            <strong class="amount">$ ${total} VND</strong>
+                                                            <strong class="amount">$ <fmt:formatNumber type="number" value="${total}"/> đ </strong>
                                                         </div>
                                                     </div>
                                                     <div class="summary-footer">

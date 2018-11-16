@@ -2,6 +2,7 @@
 <html class="fixed">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <head>
 
         <!-- Basic -->
@@ -416,12 +417,12 @@
                                                         <tr class="gradeX">
                                                             <td>${row.nameProduct}</td>
                                                             <td>${row.quantityOrder}</td>
-                                                            <td>${row.priceProduct}</td>
+                                                            <td><fmt:formatNumber type="number" value="${row.priceProduct}"/> đ</td>
                                                         </tr>
                                                     </c:forEach>
                                                     <tr>
                                                         <td colspan="2"><b>Total</b></td>
-                                                        <td> <b> ${rows.totalOrder} VNĐ </b></td>
+                                                        <td> <b> <fmt:formatNumber type="number" value="${rows.totalOrder}"/> đ</b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

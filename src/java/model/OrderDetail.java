@@ -15,22 +15,25 @@ public class OrderDetail {
     private int quantity;
     private int orderid;
     private int productid;
+    private int price;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int id, int quantity, int orderid, int productid) {
-        this.id = id;
-        this.quantity = quantity;
+    public OrderDetail(int orderid, int quantity, int productid, int price) {
+
         this.orderid = orderid;
+        this.quantity = quantity;
         this.productid = productid;
+        this.price = price;
     }
 
-    public OrderDetail(int orderid, int quantity, int productid) {
+    public int getPrice() {
+        return price;
+    }
 
-        this.orderid = orderid;
-        this.quantity = quantity;
-        this.productid = productid;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getId() {

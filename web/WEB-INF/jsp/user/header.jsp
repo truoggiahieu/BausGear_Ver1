@@ -74,7 +74,7 @@
                                                                 <p color="red" style="float: left">${message}</p>
                                                             </div>
                                                         </div>
-                                                            
+
                                                         <div class="modal-footer">
                                                             <a href="registerCus.htm" class="btn btn-secondary">Register</a>
                                                             <button type="submit" class="btn btn-primary" name="btnLoginCustomer">Login</button>
@@ -93,7 +93,7 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Info</h5>
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Profile</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -113,7 +113,7 @@
                                                                 <label for="recipient-name" class="col-form-label" style="float: left; clear: both">Address:  ${items.addressCustomer}</label>
                                                             </div>
                                                             <div class="form-group">
-                                                                <img src="../images/${items.imageCustomer}" width="40%"/>
+                                                                <img src="../images/${items.imageCustomer}" width="45%"/>
                                                             </div>
                                                         </c:forEach>
                                                     </div>

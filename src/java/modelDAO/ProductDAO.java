@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-
+// s loi package go z ?a
 import bean.Product;
 import bean.*;
 import static model.AdminDAO.idAdmin;

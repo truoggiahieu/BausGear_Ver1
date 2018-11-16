@@ -206,7 +206,7 @@ public class OrderDAO {
     public List<Order> showOrderDetails(Order or) {
         try {
             Connection conn = ConnectionDB.getConn();
-            String sql = "Select  OrderDetails.idOrder,OrderDetails.quantityOrderDetails ,Products.nameProduct ,Products.priceProduct , Products.imageProduct\n"
+            String sql = "Select  OrderDetails.idOrder,OrderDetails.quantityOrderDetails,OrderDetails.price ,Products.nameProduct  , Products.imageProduct\n"
                     + "From OrderDetails\n"
                     + "inner join Products\n"
                     + "on Products.id = OrderDetails.idProduct and OrderDetails.idOrder = ?";
@@ -218,7 +218,7 @@ public class OrderDAO {
                 int idOrder = rs.getInt("idOrder");
                 int quantityOrder = rs.getInt("quantityOrderDetails");
                 String nameProduct = rs.getString("nameProduct");
-                int priceProduct = rs.getInt("priceProduct");
+                int priceProduct = rs.getInt("price");
                 Order ord = new Order(idOrder, quantityOrder, nameProduct, priceProduct);
                 list.add(ord);
             }

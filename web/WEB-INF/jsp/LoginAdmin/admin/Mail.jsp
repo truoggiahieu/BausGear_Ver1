@@ -143,7 +143,7 @@
                                     <li  class="nav-expanded nav-active">
                                         <a href="btnSendMail.htm">
                                             <span class="pull-right label label-primary">+999</span>
-
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
                                             <span>Mailbox</span>
                                         </a>
                                     </li>
