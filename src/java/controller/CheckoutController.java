@@ -14,6 +14,7 @@ import cart.ProductDTO;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,25 +35,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/checkout/")
 public class CheckoutController {
-    
+
     @Autowired
     Mailer mailer;
-    
-    private String from = "giahieu0201@gmail.com";
-    private String subject = "BAU'S GEAR | ORDER";
+
+    private String from = "bausgear@gmail.com";
+    private String subject ;
     private String to;
-    private String body = "Order Success ";
-    
+    private String body;
+
     CustomerDAO customerDAO = new CustomerDAO();
     ProductsDAO prDAO = new ProductsDAO();
-    
+
     @RequestMapping("checkout")
     public String view(ModelMap model, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         session.getAttribute("listUser");
         return "user/checkout";
     }
-    
+
     @RequestMapping(value = "add_orders", method = RequestMethod.GET) // post hay get
     public String add_orders(ModelMap model, HttpServletRequest request, HttpSession session) {
         LocalDate now = LocalDate.now();
@@ -68,17 +69,26 @@ public class CheckoutController {
                 id, endday.toString(), phone, address, email, 1);
         CheckoutDAO list = new CheckoutDAO();
         list.add_order(order);
-        
+
         CartBean cartBean = (CartBean) session.getAttribute("SHOP");
         for (ProductDTO productDTO : cartBean.values()) {
+            int sl = productDTO.getQuantity();
+            int gia = productDTO.getSanpham().getPrice();
+            int giaorder = sl * gia;
             OrderDetail orderdetail = new OrderDetail(list.select_id_just_added_to_order(),
-                    productDTO.getQuantity(), productDTO.getSanpham().getId(), productDTO.getSanpham().getPrice());
+                    productDTO.getQuantity(), productDTO.getSanpham().getId(), giaorder);
             list.add_orderdetail(orderdetail);
         }
-        
+        // Lấy ID mới nhất
+        int lastId = list.select_id_just_added_to_order();
         to = request.getParameter("txtEmail");
+        body = "Hello ! Your Order(#" + lastId + ") has been processing ! Thank you because choose our product";
         session.removeAttribute("CARTSIZE");
         session.removeAttribute("SHOP");
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(date);
+        subject = "BAU'S GEAR || YOUR ORDER IN " + strDate + " HAS SUCCESS ";
         mailer.send(from, to, subject, body);
         return "user/thankyou";
     }
@@ -90,20 +100,20 @@ public class CheckoutController {
         String username = request.getParameter("txtUsername");
         String password = request.getParameter("txtPassword");
         if (customerDAO.Login(username, password) == "customer" || customerDAO.Login(username, password) == "guest") {
-            
+
             session.setAttribute("USER", username);
             session.setAttribute("PASS", password);
             session.setAttribute("ROLE", customerDAO.Login(username, password));
-            
+
             List<Products> ds = new ArrayList<>();
             ds = prDAO.showproducts();
-            
+
             List<Customer> cus = new ArrayList<>();
             cus = customerDAO.showCustomer(username);
-            
+
             session.setAttribute("listProducts", ds);
             session.setAttribute("listCustomer", cus);
-            
+
             session.setAttribute("uri", request.getRequestURI()
                     .substring(request.getContextPath().length()));
             return "user/checkout";
@@ -112,19 +122,19 @@ public class CheckoutController {
         model.addAttribute("message", "Đăng nhập không thành công - Vui lòng kiểm tra lại");
         return "user/checkout";
     }
-    
+
     @RequestMapping("btnLogoutCustomer")
     public String Logout(ModelMap model, HttpSession session) {
         session.removeAttribute("USER");
         session.removeAttribute("listCustomer");
         return "user/index";
     }
-    
+
     @RequestMapping("registerCus")
     public String Register() {
         return "user/register";
     }
-    
+
     @RequestMapping(value = "registerCustomer")
     public String Register(ModelMap model, HttpServletRequest request) {
         String usernameCustomer = request.getParameter("txtUsername");

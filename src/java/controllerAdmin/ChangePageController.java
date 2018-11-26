@@ -9,7 +9,7 @@ import bean.Admin;
 import bean.Order;
 import bean.Product;
 import bean.*;
-import static controller.LoginAdminController.userLogin;
+import static controllerAdmin.LoginAdminController.userLogin;
 import static model.AdminDAO.role;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,10 @@
 <%-- 
-    Document   : register
-    Created on : Nov 6, 2018, 6:54:36 PM
-    Author     : Huynh Phuong Duy
+    Document   : ForgotPassword_Page4
+    Created on : Nov 25, 2018, 2:05:17 PM
+    Author     : Gia Hieu
 --%>
 
+<!doctype html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -108,37 +109,19 @@
         </style>
     </head>
     <body>
-        <div class="signup-form">
-            <form action="registerCustomer.htm" method="post">
-                <h2>Register</h2>
-                <p class="hint-text">Create your account. It's free and only takes a minute.</p>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-xs-6"><input type="text" class="form-control" name="txtUsername" placeholder="Username" required="required"></div>
-                        <div class="col-xs-6"><input type="password" class="form-control" name="txtPassword" placeholder="Password" required="required"></div>
-                    </div>        	
+        <div class="signup-form text-center">
+            <h2>Forgot Password</h2>
+            <p class="hint-text text-center ">It's free and only takes a minute.</p>
+            <form action="loginCustomer.htm" method="post">
+                <div class="row text-center">
+                    <div class="form-group text-center">
+                        <h5 style="color: red">${message}</h5>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" name="loginCustomer" class="btn btn-success btn-lg">Return to HomePage</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="txtName" placeholder="Full Name" required="required">
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="txtEmail" placeholder="Email" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="txtPhone" placeholder="Phone" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="txtAddress" placeholder="Address" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="file" name="txtImage" required="required">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-lg btn-block" name="registerCustomer">Register Now</button>
-                    </div>
             </form>
-            <div class="text-center">Already have an account? <a href="../product/index.htm">Sign in</a></div>
-        </div>  
+        </div>
     </body>
 </html>

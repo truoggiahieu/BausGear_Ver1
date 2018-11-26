@@ -6,7 +6,7 @@
 package controllerAdmin;
 
 import bean.*;
-import static controller.LoginAdminController.userLogin;
+import static controllerAdmin.LoginAdminController.userLogin;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

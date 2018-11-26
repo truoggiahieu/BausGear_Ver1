@@ -1,7 +1,7 @@
 <%-- 
-    Document   : register
-    Created on : Nov 6, 2018, 6:54:36 PM
-    Author     : Huynh Phuong Duy
+    Document   : ForgotPassword_Page1.jsp
+    Created on : Nov 25, 2018, 2:03:27 PM
+    Author     : Gia Hieu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -108,37 +108,23 @@
         </style>
     </head>
     <body>
-        <div class="signup-form">
-            <form action="registerCustomer.htm" method="post">
-                <h2>Register</h2>
-                <p class="hint-text">Create your account. It's free and only takes a minute.</p>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-xs-6"><input type="text" class="form-control" name="txtUsername" placeholder="Username" required="required"></div>
-                        <div class="col-xs-6"><input type="password" class="form-control" name="txtPassword" placeholder="Password" required="required"></div>
-                    </div>        	
+        <div class="signup-form text-center">
+            <h2>Forgot Password</h2>
+            <p class="hint-text text-center ">It's free and only takes a minute.</p>
+            <form action="btnForgotpassword_CheckEmail.htm" method="POST">
+                <div class="form-group text-center">
+                    <div class="row text-center">
+                        <h5><p style="color: red">${message}</p></h5>
+                        <div class="form-group text-center">
+                            <input name="txtEmail" type="email" placeholder="E-mail" class="form-control" required="required" />
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success btn-lg" name="btnForgotpassword_CheckEmail">Send confirmation code</button>
+                        </div>
+                    </div>
+                    <p class="text-center"> Return to homepage : <a href="../product/index.htm">Click here</a>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="txtName" placeholder="Full Name" required="required">
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="txtEmail" placeholder="Email" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="txtPhone" placeholder="Phone" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="txtAddress" placeholder="Address" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="file" name="txtImage" required="required">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-lg btn-block" name="registerCustomer">Register Now</button>
-                    </div>
             </form>
-            <div class="text-center">Already have an account? <a href="../product/index.htm">Sign in</a></div>
-        </div>  
+        </div>
     </body>
 </html>

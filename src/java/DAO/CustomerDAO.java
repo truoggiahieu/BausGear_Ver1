@@ -134,7 +134,6 @@ public class CustomerDAO {
     }
 
     public void insertCustomer(Customer cs) {
-        register = false;
         try {
             Connection conn = ConnectionDB.getConn();
             String sql = "insert into Customers values (?, ?, ?, ?, ?, ?, 1, ?)";
@@ -147,9 +146,6 @@ public class CustomerDAO {
             ps.setString(6, cs.getAddressCustomer());
             ps.setString(7, cs.getImageCustomer());
             ps.executeUpdate();
-            if (rs.next()) {
-                register = true;
-            }
             ps.close();
             conn.close();
         } catch (Exception e) {

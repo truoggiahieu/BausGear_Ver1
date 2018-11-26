@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controllerAdmin;
 
 import bean.Order;
 import bean.Product;
 import bean.Staff;
-import static controller.LoginAdminController.userLogin;
+import static controllerAdmin.LoginAdminController.userLogin;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +68,7 @@ public class StaffController {
         }
         model.addAttribute("image2", imageAdmin);
         model.addAttribute("email2", emailAdmin);
-        model.addAttribute("message", "Thêm nhân viên thành công");
+        model.addAttribute("message", "SUCCESS: Create New Staff Success");
         model.addAttribute("username", userLogin);
         return "LoginAdmin/admin/AddStaff";
     }

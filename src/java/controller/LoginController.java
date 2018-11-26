@@ -32,8 +32,8 @@ public class LoginController {
     @Autowired
     Mailer mailer;
 
-    private String from = "giahieu0201@gmail.com";
-    private String subject = "BAU'S GEAR | CHANGE PASSWORD";
+    private String from = "bausgear@gmail.com";
+    private String subject = "BAU'S GEAR || CHANGE PASSWORD";
     private String to;
     private String body;
     private String equalsCode;
@@ -52,7 +52,7 @@ public class LoginController {
 
     @RequestMapping("loginCustomer")
     public String Login() {
-        return "user/login";
+        return "user/index";
     }
 
     //Kiểm tra Tài khoản và mật khẩu
@@ -93,7 +93,7 @@ public class LoginController {
         return "user/index";
     }
 
-    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklfmopqrstuvwxyz";
     private static Random rnd = new Random();
 
     //Tạo ra CODE bằng một chuỗi bất kỳ
@@ -114,7 +114,7 @@ public class LoginController {
     }
 
     //Kiểm tra Email và gửi MÃ để đổi mật khẩu mới 
-    @RequestMapping(value = "btnForgotpassword_Check_Email")
+    @RequestMapping(value = "btnForgotpassword_CheckEmail")
     public String checkEmailandUser(ModelMap model, Customer customer,
             @RequestParam("txtEmail") String toCustomerInput) {
         //Lấy Email của ngưởi dùng nhập 
@@ -129,11 +129,11 @@ public class LoginController {
             randomString();
             //Send Email về cho Admin với nội dung được gán sẵn
             mailer.send(from, to, subject, body);
-            model.addAttribute("message", "Vui lòng kiểm tra Email để nhận CODE");
+            model.addAttribute("message", "Please check your Email to give Code");
             return "user/ForgotPassword_Page2";
         }
         //Trả về False
-        model.addAttribute("message", "Vui lòng nhập đúng Username và Email đã đăng ký");
+        model.addAttribute("message", "Please enter your Email you sign in");
         return "user/ForgotPassword_Page1";
     }
 
@@ -141,7 +141,7 @@ public class LoginController {
     public String checkCode(ModelMap model, @RequestParam("txtCode") String code) {
         if (code.isEmpty()) {
             // Code không được để trống
-            model.addAttribute("message", "Vui lòng nhập mã");
+            model.addAttribute("message", "Please enter your code !");
             return "user/ForgotPassword_Page2";
         } else if (code.equals(equalsCode)) {
             //Code trùng với code hệ thống
@@ -149,7 +149,7 @@ public class LoginController {
             return "user/ForgotPassword_Page3";
         }
         // Code không trùng hoặc nhập không đủ ký tự
-        model.addAttribute("message", "Mã nhập vào không đúng - Vui lòng thử lại");
+        model.addAttribute("message", "Code isn't correct - Please try again !");
         return "user/ForgotPassword_Page2";
     }
 
@@ -160,7 +160,7 @@ public class LoginController {
         randomString();
         //Send mail với người nhận cũ
         mailer.send(from, to, subject, body);
-        model.addAttribute("message", "Đã gửi lại CODE mới - Vui lòng kiểm tra Email");
+        model.addAttribute("message", "New code has been sent - Please check your Email");
         return "user/ForgotPassword_Page2";
     }
 
@@ -176,10 +176,10 @@ public class LoginController {
             customer.setEmailCustomer(emailChangePassword);
             customerDAO.updatePasswordCustomer(customer);
             //Đổi mật khẩu thành công
-            model.addAttribute("message", "Mật khẩu đã được cập nhập - Vui lòng đăng nhập lại !");
+            model.addAttribute("message", "New Password has been update !");
             return "user/ForgotPassword_Page4";
         }
-        model.addAttribute("message", "Mật khẩu không khớp - Vui lòng nhập lại mật khẩu mới !");
+        model.addAttribute("message", "Password and Password Confirm is not correct - Try again !");
         return "user/ForgotPassword_Page3";
     }
 

@@ -62,20 +62,21 @@
                                                         </div>
 
                                                         <div class="modal-body mx-3">
-                                                            <div class="md-form mb-5">
+                                                            <div class="md-form mb-4">
                                                                 <label for="recipient-name" class="col-form-label" style="float: left">Username</label>
-                                                                <input type="text" class="form-control" id="recipient-name" name="txtUsername">
+                                                                <input type="text" class="form-control" id="recipient-name" name="txtUsername" required="required">
                                                             </div>
                                                             <div class="md-form mb-4">
                                                                 <label for="recipient-name" class="col-form-label" style="float: left">Password</label>
-                                                                <input type="password" class="form-control" id="recipient-name" name="txtPassword">
+                                                                <input type="password" class="form-control" id="recipient-name" name="txtPassword" required="required">>
                                                             </div>
                                                             <div class="form-group">
-                                                                <p color="red" style="float: left">${message}</p>
+                                                                <p color="red" style="float: left; color: red">${message}</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="modal-footer">
+                                                            <a href="btnForgotpassword.htm" class="btn btn-secondary">Forgot Password</a>
                                                             <a href="registerCus.htm" class="btn btn-secondary">Register</a>
                                                             <button type="submit" class="btn btn-primary" name="btnLoginCustomer">Login</button>
                                                         </div>
@@ -85,20 +86,20 @@
                                         </div>   
                                     </c:if>
                                     <c:if test="${sessionScope.USER != null}">
-                                        <li>          
-                                            Hello, ${sessionScope.USER}  <a href="#" data-toggle="modal" data-target="#user-info">
-                                                <span class="icon icon-person">${sessionScope.IMGUSER}</span></a></li>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="user-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Profile</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
+                                        <li><c:forEach var="items" items="${sessionScope.listCustomer}">       
+                                                ${items.nameCustomer}  <a href="#" data-toggle="modal" data-target="#user-info">
+                                                    <span class="icon icon-person">${sessionScope.IMGUSER}</span></a></c:forEach></li>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="user-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">User Profile</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
                                                         <c:forEach var="items" items="${sessionScope.listCustomer}">
                                                             <div class="form-group">
                                                                 <label for="recipient-name" class="col-form-label" style="float: left">Name:  ${items.nameCustomer}</label>

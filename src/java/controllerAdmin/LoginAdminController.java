@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controllerAdmin;
 
 import bean.Admin;
 import bean.Mailer;
@@ -31,15 +31,15 @@ public class LoginAdminController {
     @Autowired
     Mailer mailer;
 
-    private String from = "giahieu0201@gmail.com";
-    private String subject = "BAU'S GEAR | Order success";
+    private String from = "bausgear@gmail.com";
+    private String subject = "BAU'S GEAR ||CHANGE PASSWORD";
     private String to;
     private String body;
     private String equalsCode;
     public static String userLogin;
     public String emailChangePassword;
 
-    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklfmopqrstuvwxyz";
     private static Random rnd = new Random();
 
     AdminDAO adminDAO = new AdminDAO();
@@ -51,6 +51,7 @@ public class LoginAdminController {
         for (int i = 0; i <= 6; i++) {
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         }
+        
         //Nội dung gửi mail + CODE được tạo ra
         equalsCode = sb.toString();
         body = "Your Privare Code: " + sb.toString() + " - Please enter CODE to reset your password !";
@@ -164,9 +165,9 @@ public class LoginAdminController {
     public String sendCodeAgain(ModelMap model) {
         //Tạo ra chuỗi ngẫu nhiên 6 ký tự
         randomString();
-        //Send mail với người nhận cũ
+        //Send mail với mã 
         mailer.send(from, to, subject, body);
-        model.addAttribute("message", "New code has sent - Please check your email");
+        model.addAttribute("message", "New code has been sent - Please check your Email");
         return "LoginAdmin/ForgotPassword_Page2";
     }
 

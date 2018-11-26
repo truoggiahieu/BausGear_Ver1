@@ -7,7 +7,7 @@ package controllerAdmin;
 
 import bean.Admin;
 import bean.*;
-import static controller.LoginAdminController.userLogin;
+import static controllerAdmin.LoginAdminController.userLogin;
 import static model.AdminDAO.idAdmin;
 import java.util.ArrayList;
 import java.util.List;
